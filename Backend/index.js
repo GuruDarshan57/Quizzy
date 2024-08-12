@@ -13,3 +13,7 @@ connect()
 const quiz = require("./routes/quiz")
 app.use("/quiz", quiz)
 
+// con.query("INSERT INTO  quiz_data(question, answer) VALUE ('What is NodeJs?', 'A Javascript runtime.');", function (err, result) {
+//     if (err) throw err;
+//     console.log("Table created");
+// });
