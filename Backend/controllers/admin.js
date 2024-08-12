@@ -2,6 +2,7 @@ const { con } = require("../connection")
 
 const insertQuestion = (req, res) => {
     const { question, answer } = req.body
+    // console.log(req.body)
     // console.log(question + " " + answer)
     if (question && answer) {
         con.query(`INSERT INTO  quiz_data(question, answer) VALUE ('${question}','${answer}' );`, (err, result) => {
