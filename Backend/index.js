@@ -26,13 +26,14 @@ const admin = require("./routes/admin")
 app.use("/admin", admin)
 
 //Table creation
-// con.query("CREATE TABLE quiz_data (id INT AUTO_INCREMENT PRIMARY KEY,question TEXT NOT NULL,answer TEXT NOT NULL,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);", function (err, result) {
+// con.query("CREATE TABLE quiz_data (id INT AUTO_INCREMENT PRIMARY KEY,topic VARCHAR(255) NOT NULL,question TEXT NOT NULL,answer TEXT NOT NULL,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);", function (err, result) {
 //     if (err) throw err;
 //     console.log("Table created");
 // });
 
+
 //sample data insertion
-// con.query("INSERT INTO  quiz_data(question, answer) VALUES ('What is React?', 'A JavaScript library for building user interfaces.'),('What is a component in React?', 'A reusable piece of UI in a React application.');", function (err, result) {
+// con.query("INSERT INTO quiz_data (topic, question, answer) VALUES ('React', 'What is React?', 'A JavaScript library for building user interfaces.');", function (err, result) {
 //     if (err) throw err;
 //     console.log("Sample data inserted");
 // });

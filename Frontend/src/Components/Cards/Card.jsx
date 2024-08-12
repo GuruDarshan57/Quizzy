@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useSetCategory from '../../hooks/useSetCategory'
+import { Category_context } from '../../Contexts/Category'
 
 const Card = (props) => {
-    const { category, setCategory } = useSetCategory()
+    const { category, setCategory } = useContext(Category_context)
     const nav = useNavigate()
     const handleClick = () => {
         nav("/quiz")
@@ -11,7 +11,7 @@ const Card = (props) => {
         console.log(category)
     }
     return (
-        <div onClick={handleClick} className='flex-col relative place-content-center border-4 border-black w-56 h-32 hover:-translate-y-2 transition-transform cursor-pointer mb-10 sm:mb-0 relative left-6 sm:left-0'>
+        <div onClick={handleClick} className='flex-col relative place-content-center border-4 border-black w-56 h-32 hover:-translate-y-2 transition-transform cursor-pointer mb-10 sm:mb-0 relative left-8 sm:left-0'>
             <div className='text-4xl'>
                 {props.data.name}
             </div>

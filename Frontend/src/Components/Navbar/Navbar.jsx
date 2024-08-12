@@ -4,7 +4,7 @@ import img1 from '../../Assets/favicon.png'
 
 const Navbar = () => {
     return (
-        <div className='p-2  sm:p-4 w-full flex justify-center bg_nav opacity-80' >
+        <div className='p-2  sm:p-4 w-full flex justify-center bg_nav opacity-80 absolute top-0' >
             <div className='w-11/12 sm:w-3/4 flex-col sm:flex-row sm:flex justify-between items-center'>
                 <div className='flex items-center gap-7 justify-center sm:justify-normal'>
                     <img src={img1} className='hidden sm:flex h-16 border-4 border-black rounded-full' alt="" />
