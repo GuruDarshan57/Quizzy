@@ -1,5 +1,19 @@
 const { con } = require("../connection")
 
+
+const getData = (req, res) => {
+    con.query(`SELECT * FROM quiz_data `, (err, results) => {
+        if (err) {
+            res.status(500).json({ msg: "Server Error" })
+            throw err;
+        }
+        else {
+            res.json(results);
+        }
+
+    })
+}
+
 const insertQuestion = (req, res) => {
     const { question, answer } = req.body
     // console.log(req.body)
@@ -69,4 +83,4 @@ const editQuestion = (req, res) => {
     }
 }
 
-module.exports = { insertQuestion, deleteQuestion, editQuestion }
+module.exports = { insertQuestion, deleteQuestion, editQuestion, getData }

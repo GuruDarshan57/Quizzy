@@ -6,12 +6,13 @@ const Admin = () => {
     const [item, setItem] = useState(0)
     const [question, setQuestion] = useState("")
     const [answer, setAnswer] = useState("")
+    const [topic, setTopic] = useState("")
     useEffect(() => {
         getQuizItems()
     }, [item])
 
     const getQuizItems = async () => {
-        const res = await axios.get(import.meta.env.VITE_BACKEND + "quiz")
+        const res = await axios.get(import.meta.env.VITE_BACKEND + "admin/data")
         // console.log(res.data)
         setItems(res.data)
         setItem(res.data.length)
@@ -22,7 +23,7 @@ const Admin = () => {
     }
     const addItem = async (e) => {
         e.preventDefault()
-        const payload = { question: question, answer: answer }
+        const payload = { question: question, answer: answer, topic: topic }
         const res = await axios.post(import.meta.env.VITE_BACKEND + `admin/add`, payload)
         setItem(item + 1)
     }
@@ -32,6 +33,7 @@ const Admin = () => {
                 <form >
                     <input type="text" placeholder='Question' value={question} onChange={(e) => { setQuestion(e.target.value) }} />
                     <input type="text" placeholder='Answer' value={answer} onChange={(e) => { setAnswer(e.target.value) }} />
+                    <input type="text" placeholder='Topic' value={topic} onChange={(e) => { setTopic(e.target.value) }} />
                     <button type="submit" onClick={addItem}>Add</button>
                 </form>
             </div>

@@ -2,7 +2,9 @@ const express = require("express")
 
 const Router = express.Router()
 
-const { insertQuestion, deleteQuestion, editQuestion } = require("../controllers/admin")
+const { insertQuestion, deleteQuestion, editQuestion, getData } = require("../controllers/admin")
+
+Router.route("/data").get(getData)
 
 Router.route("/add").post(insertQuestion)
 
