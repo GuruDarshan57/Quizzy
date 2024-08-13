@@ -20,7 +20,7 @@ const Home = () => {
                         <div className='border-4 p-1 w-28 border-black'>Grow</div>
                         <div className='border-4 p-1 w-28 border-black'>Evolve</div></div>
                 </div>
-                <div className='flex-col sm:flex-row sm:flex sm:justify-evenly mt-24 sm:mt-10 mb-36 sm:mb-0'>
+                <div className='flex flex-col sm:flex-row items-center sm:flex sm:justify-evenly mt-24 sm:mt-10 mb-36 sm:mb-0'>
                     {categories.map(ele =>
                         <Card key={ele.name} data={ele} />
                     )}

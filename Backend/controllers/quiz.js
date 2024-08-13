@@ -7,7 +7,7 @@ const getData = (req, res) => {
         con.query(`SELECT * FROM quiz_data WHERE topic='${topic}' `, (err, results) => {
             if (err) {
                 res.status(500).json({ msg: "Server Error" })
-                throw err;
+                console.log(err.message)
             }
             else {
                 res.json(results);

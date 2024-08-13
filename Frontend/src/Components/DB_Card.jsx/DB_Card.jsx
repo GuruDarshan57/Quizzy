@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const DB_Card = (props) => {
     const [equestion, setEquestion] = useState(props.data.question)
@@ -8,10 +9,23 @@ const DB_Card = (props) => {
     const [edit, setEdit] = useState(false)
 
     const editItem = async (id) => {
-        const payload = { question: equestion, answer: eanswer, topic: etopic }
-        const res = await axios.patch(import.meta.env.VITE_BACKEND + `admin/edit/${props.data.id}`, payload)
-        setEdit(false)
-        props.func.f2()
+        if (equestion != props.data.question || etopic != props.data.topic || eanswer != props.data.answer) {
+            try {
+                const payload = { question: equestion, answer: eanswer, topic: etopic }
+                const res = await axios.patch(import.meta.env.VITE_BACKEND + `admin/edit/${props.data.id}`, payload)
+                if (res.status === 200) {
+                    setEdit(false)
+                    toast.success(res.data.msg)
+                    props.func.f2()
+                }
+            } catch (err) {
+                console.log(err)
+            }
+
+        }
+        else {
+            toast.warning("Nothing to Modify")
+        }
     }
     return (
         <div className='flex sm:ml-4 mb-4 text-center' style={{ display: "flex", gap: "15px" }}>

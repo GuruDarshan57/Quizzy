@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import DB_Card from '../../Components/DB_Card.jsx/DB_Card';
-
+import { toast } from 'react-toastify'
 const Admin = () => {
     const [items, setItems] = useState("")
     const [item, setItem] = useState(0)
@@ -20,22 +20,57 @@ const Admin = () => {
     }
 
     const getQuizItems = async () => {
-        setLoader(true)
-        const res = await axios.get(import.meta.env.VITE_BACKEND + "admin/data")
-        // console.log(res.data)
-        setItems(res.data)
-        setItem(res.data.length)
-        setLoader(false)
+        try {
+            setLoader(true)
+            const res = await axios.get(import.meta.env.VITE_BACKEND + "admin/data")
+            // console.log(res.data)
+            setItems(res.data)
+            setItem(res.data.length)
+            setLoader(false)
+        } catch (err) {
+            console.log(err)
+        }
     }
     const deleteItem = async (id) => {
-        const res = await axios.delete(import.meta.env.VITE_BACKEND + `admin/delete/${id}`)
-        setItem(item - 1)
+        try {
+            const res = await axios.delete(import.meta.env.VITE_BACKEND + `admin/delete/${id}`)
+
+            if (res.status === 200) {
+                toast.success(res.data.msg)
+                setItem(item - 1)
+            }
+            else {
+                toast.warning(res.data.msg)
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
     const addItem = async (e) => {
         e.preventDefault()
-        const payload = { question: question, answer: answer, topic: topic }
-        const res = await axios.post(import.meta.env.VITE_BACKEND + `admin/add`, payload)
-        setItem(item + 1)
+        if (topic && question && answer) {
+            try {
+                const payload = { question: question, answer: answer, topic: topic }
+                const res = await axios.post(import.meta.env.VITE_BACKEND + `admin/add`, payload)
+
+                if (res.status === 200) {
+                    toast.success(res.data.msg)
+                    setItem(item + 1)
+                    setAnswer()
+                    setQuestion()
+                    setTopic()
+                } else {
+                    toast.warning(res.data.msg)
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+        } else {
+            toast.warning("All fields needed")
+        }
+
     }
     return (
         <div className='my-28 w-full flex justify-center'>

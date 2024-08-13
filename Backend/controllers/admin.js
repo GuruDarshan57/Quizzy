@@ -5,7 +5,7 @@ const getData = (req, res) => {
     con.query(`SELECT * FROM quiz_data `, (err, results) => {
         if (err) {
             res.status(500).json({ msg: "Server Error" })
-            throw err;
+            console.log(err.message)
         }
         else {
             res.json(results);
@@ -18,7 +18,7 @@ const insertQuestion = (req, res) => {
     const { question, answer, topic } = req.body
     // console.log(req.body)
     // console.log(question + " " + answer)
-    if (question && answer) {
+    if (question && answer && topic) {
         con.query(`INSERT INTO  quiz_data(question, answer,topic) VALUE ('${question}','${answer}','${topic}' );`, (err, result) => {
             if (err) {
                 res.json({ msg: "Server error" })
@@ -43,7 +43,7 @@ const deleteQuestion = (req, res) => {
     if (id) {
         con.query(`DELETE FROM quiz_data WHERE id = ${id};`, (err, result) => {
             if (err) {
-                res.json({ msg: "Server error" })
+                res.status(500).json({ msg: "Server error" })
                 console.log("Deletion error : " + err.message)
             }
             else {
@@ -61,13 +61,13 @@ const deleteQuestion = (req, res) => {
 
 const editQuestion = (req, res) => {
     const id = req.params.id
-    console.log(id)
+    // console.log(id)
     const { question, answer, topic } = req.body
-    console.log(question + " " + answer + " " + topic)
-    if (id && question && answer) {
+    // console.log(question + " " + answer + " " + topic)
+    if (id && question && answer && topic) {
         con.query(`UPDATE quiz_data SET question = '${question}',answer='${answer}',topic='${topic}' WHERE id = ${id} ;`, (err, result) => {
             if (err) {
-                res.json({ msg: "Server error" })
+                res.status(500).json({ msg: "Server error" })
                 console.log("Edit error : " + err.message)
             }
             else {
