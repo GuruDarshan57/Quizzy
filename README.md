@@ -1,1 +1,1 @@
-#Simple Quiz App - Striver Assignment
+# Simple Quiz App - Striver Assignment
