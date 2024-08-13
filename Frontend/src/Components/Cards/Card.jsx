@@ -20,7 +20,7 @@ const Card = (props) => {
                     Level : {props.data.level}
                 </div>
                 <div>
-                    <i class="cursor-pointer fa-solid fa-arrow-right" style={{ color: "#ffffff" }}></i>
+                    <i className="cursor-pointer fa-solid fa-arrow-right" style={{ color: "#ffffff" }}></i>
                 </div>
             </div>
         </div>

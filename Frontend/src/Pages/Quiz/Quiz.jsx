@@ -11,15 +11,16 @@ const Quiz = () => {
     }, [])
     const [items, setItems] = useState("")
     const [item, setItem] = useState(0)
+    const [loader, setLoader] = useState(true)
     const getQuizItems = async () => {
         const res = await axios.get(import.meta.env.VITE_BACKEND + `quiz/${category}`)
-        console.log(res.data, category)
         setItems(res.data)
+        setLoader(false)
     }
     return (
         <div className='flex w-full justify-center'>
 
-            <div className='w-11/12 sm:w-3/4 flex justify-center items-center'>
+            {loader ? <div className="loader"></div> : <div className='w-11/12 sm:w-3/4 flex justify-center items-center'>
                 <div>
                     <i onClick={() => { item > 0 ? setItem(item - 1) : "" }} className={`fa-solid fa-square-caret-left relative right-2 text-4xl z-10 ${item == 0 ? "text-slate-600" : ""}`}></i>
                 </div>
@@ -41,7 +42,7 @@ const Quiz = () => {
                 <div>
                     <i onClick={() => { items.length - 1 > item ? setItem(item + 1) : "" }} className={`fa-solid fa-square-caret-right relative left-2 text-4xl z-10 ${item == items.length - 1 ? "text-slate-600" : ""}`}></i>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

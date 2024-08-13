@@ -7,15 +7,18 @@ const Admin = () => {
     const [question, setQuestion] = useState("")
     const [answer, setAnswer] = useState("")
     const [topic, setTopic] = useState("")
+    const [loader, setLoader] = useState(true)
     useEffect(() => {
         getQuizItems()
     }, [item])
 
     const getQuizItems = async () => {
+        setLoader(true)
         const res = await axios.get(import.meta.env.VITE_BACKEND + "admin/data")
         // console.log(res.data)
         setItems(res.data)
         setItem(res.data.length)
+        setLoader(false)
     }
     const deleteItem = async (id) => {
         const res = await axios.delete(import.meta.env.VITE_BACKEND + `admin/delete/${id}`)
@@ -29,7 +32,7 @@ const Admin = () => {
     }
     return (
         <div className='my-28 w-full flex justify-center'>
-            <div className='w-3/4'>
+            {loader ? <div className="loader"></div> : <div className='w-3/4'>
                 <div className='flex-col py-2'>
                     <h4 className='font-bold text-3xl ml-4 mb-2'>Add a Question</h4>
                     <form className='flex'>
@@ -61,7 +64,7 @@ const Admin = () => {
                     ) : ""}
                 </div>
             </div>
-
+            }
         </div >
     )
 }
