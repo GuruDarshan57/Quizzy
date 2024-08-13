@@ -62,10 +62,10 @@ const deleteQuestion = (req, res) => {
 const editQuestion = (req, res) => {
     const id = req.params.id
     console.log(id)
-    const { question, answer } = req.body
-    console.log(question + " " + answer)
+    const { question, answer, topic } = req.body
+    console.log(question + " " + answer + " " + topic)
     if (id && question && answer) {
-        con.query(`UPDATE quiz_data SET question = '${question}',answer='${answer}' WHERE id = ${id} ;`, (err, result) => {
+        con.query(`UPDATE quiz_data SET question = '${question}',answer='${answer}',topic='${topic}' WHERE id = ${id} ;`, (err, result) => {
             if (err) {
                 res.json({ msg: "Server error" })
                 console.log("Edit error : " + err.message)

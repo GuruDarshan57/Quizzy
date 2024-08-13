@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import DB_Card from '../../Components/DB_Card.jsx/DB_Card';
 
 const Admin = () => {
     const [items, setItems] = useState("")
@@ -8,6 +9,7 @@ const Admin = () => {
     const [answer, setAnswer] = useState("")
     const [topic, setTopic] = useState("")
     const [loader, setLoader] = useState(true)
+
     useEffect(() => {
         getQuizItems()
     }, [item])
@@ -53,14 +55,14 @@ const Admin = () => {
                         <div className='w-20 p-1 bg-black text-white'><i className="fa-regular fa-pen-to-square"></i></div>
                         <div className='w-20 p-1 bg-black text-white'><i className="fa-solid fa-trash-can" ></i></div>
                     </div>
-                    {items ? items.map(ele =>
-                        <div className='flex ml-4 mb-4 text-center' key={ele.id} style={{ display: "flex", gap: "15px" }}>
-                            <div className='w-20 border-2 border-black'>{ele.topic}</div>
-                            <div className='w-80 border-2 border-black'>{ele.question.slice(0, 30)}</div>
-                            <div className='w-80 border-2 border-black'>{ele.answer.slice(0, 30) + "..."}</div>
-                            <div className='w-20 border-2 border-black'><i className="fa-regular fa-pen-to-square"></i></div>
-                            <div className='w-20 border-2 border-black'><i className="fa-solid fa-trash-can" onClick={() => deleteItem(ele.id)}></i></div>
-                        </div>
+                    {items ? items.map(ele => <DB_Card data={ele} func={{ f1: deleteItem }} />
+                        // <div className='flex ml-4 mb-4 text-center' key={ele.id} style={{ display: "flex", gap: "15px" }}>
+                        //     <div className='w-20 border-2 border-black'>{ele.topic}</div>
+                        //     <div className='w-80 border-2 border-black'>{ele.question.slice(0, 30)}</div>
+                        //     <div className='w-80 border-2 border-black'>{ele.answer.slice(0, 30) + "..."}</div>
+                        //     <div className='w-20 border-2 border-black'><i className="fa-regular fa-pen-to-square"></i></div>
+                        //     <div className='w-20 border-2 border-black cursor-pointer' onClick={() => deleteItem(ele.id)}><i className="fa-solid fa-trash-can" ></i></div>
+                        // </div>
                     ) : ""}
                 </div>
             </div>
