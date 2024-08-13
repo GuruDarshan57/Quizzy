@@ -12,9 +12,9 @@ const Navbar = () => {
                 </div>
 
                 <div className='flex uppercase gap-8 sm:pr-10 text-center font-bold tracking-wider justify-evenly sm:justify-normal mt-3'>
-                    <Link className='p-1 w-20 border-4 border-black hover:bg-black hover:text-white' to={"/"}>Home</Link>
-                    <Link className='p-1 w-20 border-4 border-black hover:bg-black hover:text-white' to={"/quiz"}>Quiz</Link>
-                    <Link className='p-1 w-20 border-4 border-black hover:bg-black hover:text-white' to={"/admin"}>Admin</Link>
+                    <Link className='p-1 w-24 border-4 border-black hover:bg-black hover:text-white' to={"/"}>Home</Link>
+                    <Link className='p-1 w-24 border-4 border-black hover:bg-black hover:text-white' to={"/quiz"}>Quiz</Link>
+                    <Link className='p-1 w-24 border-4 border-black hover:bg-black hover:text-white' to={"/admin"}>Add/edit</Link>
                 </div>
             </div>
         </div>
