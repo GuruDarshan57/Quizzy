@@ -15,11 +15,11 @@ const getData = (req, res) => {
 }
 
 const insertQuestion = (req, res) => {
-    const { question, answer } = req.body
+    const { question, answer, topic } = req.body
     // console.log(req.body)
     // console.log(question + " " + answer)
     if (question && answer) {
-        con.query(`INSERT INTO  quiz_data(question, answer) VALUE ('${question}','${answer}' );`, (err, result) => {
+        con.query(`INSERT INTO  quiz_data(question, answer,topic) VALUE ('${question}','${answer}','${topic}' );`, (err, result) => {
             if (err) {
                 res.json({ msg: "Server error" })
                 console.log("Insertion error : " + err.message)

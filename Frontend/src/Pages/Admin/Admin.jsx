@@ -45,21 +45,21 @@ const Admin = () => {
 
                 <div className='flex-col mt-10'>
                     <h4 className='font-bold text-3xl ml-4 mb-2'>Data Base</h4>
-                    <div className='flex ml-4 mb-4' style={{ display: "flex", gap: "15px" }}>
+                    <div className='flex ml-4 mb-4 text-center tracking-wider' style={{ display: "flex", gap: "15px" }}>
 
-                        <div className='flex-2 p-1 border-2 border-black'>TOPIC</div>
-                        <div className='flex-1 p-1 border-2 border-black'>QUESTION</div>
-                        <div className='flex-1 p-1 border-2 border-black'>ANSWER</div>
-                        <div className='flex-9 p-1 border-2 border-black'><i className="fa-regular fa-pen-to-square"></i></div>
-                        <div className='flex-9 p-1 border-2 border-black'><i className="fa-solid fa-trash-can" ></i></div>
+                        <div className='w-20 p-1 bg-black text-white'>TOPIC</div>
+                        <div className='w-80 p-1 bg-black text-white'>QUESTION</div>
+                        <div className='w-80 p-1 bg-black text-white'>ANSWER</div>
+                        <div className='w-20 p-1 bg-black text-white'><i className="fa-regular fa-pen-to-square"></i></div>
+                        <div className='w-20 p-1 bg-black text-white'><i className="fa-solid fa-trash-can" ></i></div>
                     </div>
                     {items ? items.map(ele =>
-                        <div className='flex ml-4 mb-4' key={ele.id} style={{ display: "flex", gap: "15px" }}>
-                            <div className='flex-2 border-2 border-black'>{ele.topic}</div>
-                            <div className='flex-1 border-2 border-black'>{ele.question.slice(0, 30)}</div>
-                            <div className='flex-1 border-2 border-black'>{ele.answer.slice(0, 30) + "..."}</div>
-                            <div className='flex-9 border-2 border-black'><i className="fa-regular fa-pen-to-square"></i></div>
-                            <div className='flex-9 border-2 border-black'><i className="fa-solid fa-trash-can" onClick={() => deleteItem(ele.id)}></i></div>
+                        <div className='flex ml-4 mb-4 text-center' key={ele.id} style={{ display: "flex", gap: "15px" }}>
+                            <div className='w-20 border-2 border-black'>{ele.topic}</div>
+                            <div className='w-80 border-2 border-black'>{ele.question.slice(0, 30)}</div>
+                            <div className='w-80 border-2 border-black'>{ele.answer.slice(0, 30) + "..."}</div>
+                            <div className='w-20 border-2 border-black'><i className="fa-regular fa-pen-to-square"></i></div>
+                            <div className='w-20 border-2 border-black'><i className="fa-solid fa-trash-can" onClick={() => deleteItem(ele.id)}></i></div>
                         </div>
                     ) : ""}
                 </div>
